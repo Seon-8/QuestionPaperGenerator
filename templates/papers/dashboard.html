@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="page-title">Dashboard</h1>
+
+<div class="row g-4 mb-4">
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="stat-number">{{ subject_count }}</div>
+            <div class="stat-label">Subjects</div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="stat-number">{{ question_count }}</div>
+            <div class="stat-label">Questions</div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="stat-number">{{ paper_count }}</div>
+            <div class="stat-label">Generated Papers</div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Quick Actions</h5>
+        <p class="text-muted">Start by adding subjects, topics, and questions. Then generate a paper using Bloom distribution.</p>
+
+        <a href="{% url 'add_subject' %}" class="btn btn-primary">Add Subject</a>
+        <a href="{% url 'add_question' %}" class="btn btn-outline-primary">Add Question</a>
+        <a href="{% url 'ai_generate_questions' %}" class="btn btn-outline-success">Generate Questions with AI</a>
+        <a href="{% url 'generate_paper' %}" class="btn btn-outline-dark">Generate Paper</a>
+    </div>
+</div>
+{% endblock %}

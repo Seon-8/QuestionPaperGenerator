@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="paper-header mb-4">
+    <div class="d-flex justify-content-between align-items-start">
+        <div>
+            <h1 class="page-title mb-2">{{ paper.title }}</h1>
+            <p class="mb-1"><strong>Subject:</strong> {{ paper.subject.name }}</p>
+            <p class="mb-1"><strong>Total Marks:</strong> {{ paper.total_marks }}</p>
+            <p class="mb-0"><strong>Duration:</strong> {{ paper.duration_minutes }} minutes</p>
+        </div>
+
+        <div class="text-end">
+            <a href="{% url 'download_paper_pdf' paper.id %}" class="btn btn-primary mb-2">
+                Download Question Paper
+            </a>
+            <br>
+            <a href="{% url 'download_answer_key_pdf' paper.id %}" class="btn btn-outline-success">
+                Download Answer Key
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body p-4">
+        <h5 class="mb-3">Questions</h5>
+
+        {% for item in paper_questions %}
+            <div class="mb-4 pb-3 border-bottom">
+                <p class="fw-semibold mb-2">
+                    Q{{ item.order }}. {{ item.question.question_text }}
+                </p>
+
+                <div class="question-meta">
+                    <span class="badge-soft">{{ item.question.marks }} marks</span>
+                    <span class="badge-soft">Bloom: {{ item.question.get_bloom_level_display }}</span>
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-muted">No questions found in this paper.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

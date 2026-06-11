@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="center">
+        <h2>{{ paper.title }}</h2>
+        <p>Subject: {{ paper.subject.name }}</p>
+        <p>Total Marks: {{ paper.total_marks }} | Time: {{ paper.duration_minutes }} minutes</p>
+    </div>
+
+    <hr>
+
+    {% for item in paper_questions %}
+        <div class="question">
+            <strong>Q{{ item.order }}.</strong>
+            {{ item.question.question_text }}
+            <strong>[{{ item.question.marks }}]</strong>
+        </div>
+    {% endfor %}
+</body>
+</html>

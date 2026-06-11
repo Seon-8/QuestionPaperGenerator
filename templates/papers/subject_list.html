@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="page-title mb-0">Subjects</h1>
+
+    <div>
+        <a href="{% url 'add_subject' %}" class="btn btn-primary">Add Subject</a>
+        <a href="{% url 'add_topic' %}" class="btn btn-outline-primary">Add Topic</a>
+    </div>
+</div>
+
+{% if subjects %}
+    <div class="row g-3">
+        {% for subject in subjects %}
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ subject.name }}</h5>
+                        <p class="text-muted small mb-0">
+                            Subject for question paper generation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="card">
+        <div class="empty-state">
+            <h5>No subjects added yet</h5>
+            <p>Create a subject first, then add topics and questions under it.</p>
+            <a href="{% url 'add_subject' %}" class="btn btn-primary">Add Subject</a>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="page-title">Generate Question Paper</h1>
+
+{% if error %}
+    <div class="alert alert-danger">
+        {{ error }}
+    </div>
+{% endif %}
+
+<div class="card">
+    <div class="card-body p-4">
+        <form method="post">
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            <h5 class="form-section-title">Paper Details</h5>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-semibold">{{ form.title.label }}</label>
+                    {{ form.title }}
+                    {{ form.title.errors }}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-semibold">{{ form.subject.label }}</label>
+                    {{ form.subject }}
+                    {{ form.subject.errors }}
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label fw-semibold">{{ form.total_marks.label }}</label>
+                    {{ form.total_marks }}
+                    {{ form.total_marks.errors }}
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label fw-semibold">{{ form.number_of_questions.label }}</label>
+                    {{ form.number_of_questions }}
+                    {{ form.number_of_questions.errors }}
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label fw-semibold">{{ form.duration_minutes.label }}</label>
+                    {{ form.duration_minutes }}
+                    {{ form.duration_minutes.errors }}
+                </div>
+            </div>
+
+            <h5 class="form-section-title">Topics</h5>
+            <div class="topic-box mb-3">
+                {{ form.topics }}
+                {{ form.topics.errors }}
+                <div class="text-muted small mt-2">
+                    Select a subject first. Topics will appear here.
+                </div>
+            </div>
+
+            <h5 class="form-section-title">Bloom Distribution</h5>
+            <p class="text-muted small">Percentages must add up to 100.</p>
+
+            <div class="row">
+                <div class="col-md-2 mb-3">
+                    <label class="form-label">Remember %</label>
+                    {{ form.remember_percent }}
+                </div>
+
+                <div class="col-md-2 mb-3">
+                    <label class="form-label">Understand %</label>
+                    {{ form.understand_percent }}
+                </div>
+
+                <div class="col-md-2 mb-3">
+                    <label class="form-label">Apply %</label>
+                    {{ form.apply_percent }}
+                </div>
+
+                <div class="col-md-2 mb-3">
+                    <label class="form-label">Analyze %</label>
+                    {{ form.analyze_percent }}
+                </div>
+
+                <div class="col-md-2 mb-3">
+                    <label class="form-label">Evaluate %</label>
+                    {{ form.evaluate_percent }}
+                </div>
+
+                <div class="col-md-2 mb-3">
+                    <label class="form-label">Create %</label>
+                    {{ form.create_percent }}
+                </div>
+            </div>
+
+            <h5 class="form-section-title">AI Options</h5>
+
+            <div class="form-check mb-4">
+                {{ form.use_ai_fill }}
+                <label class="form-check-label">
+                    {{ form.use_ai_fill.label }}
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                Generate Paper
+            </button>
+
+            <a href="{% url 'paper_list' %}" class="btn btn-outline-secondary">
+                View Generated Papers
+            </a>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const subjectSelect = document.getElementById("id_subject");
+    const topicsContainer = document.getElementById("id_topics");
+
+    if (subjectSelect && topicsContainer) {
+        subjectSelect.addEventListener("change", function () {
+            const subjectId = this.value;
+
+            topicsContainer.innerHTML = "";
+
+            if (!subjectId) {
+                return;
+            }
+
+            fetch(`/ajax/load-topics/?subject_id=${subjectId}`)
+                .then(response => response.json())
+                .then(data => {
+                    topicsContainer.innerHTML = "";
+
+                    data.topics.forEach(topic => {
+                        const div = document.createElement("div");
+                        div.classList.add("form-check");
+
+                        const checkbox = document.createElement("input");
+                        checkbox.type = "checkbox";
+                        checkbox.name = "topics";
+                        checkbox.value = topic.id;
+                        checkbox.id = `id_topics_${topic.id}`;
+                        checkbox.classList.add("form-check-input");
+
+                        const label = document.createElement("label");
+                        label.htmlFor = `id_topics_${topic.id}`;
+                        label.textContent = topic.name;
+                        label.classList.add("form-check-label");
+
+                        div.appendChild(checkbox);
+                        div.appendChild(label);
+
+                        topicsContainer.appendChild(div);
+                    });
+                });
+        });
+    }
+</script>
+{% endblock %}

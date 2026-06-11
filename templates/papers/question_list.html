@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="page-title mb-0">Question Bank</h1>
+
+    <div>
+        <a href="{% url 'add_question' %}" class="btn btn-primary">Add Question</a>
+        <a href="{% url 'ai_generate_questions' %}" class="btn btn-success">Generate with AI</a>
+    </div>
+</div>
+
+{% if questions %}
+    <div class="row g-3">
+        {% for question in questions %}
+            <div class="col-lg-6">
+                <div class="card question-card">
+                    <div class="card-body">
+                        <p class="fw-semibold mb-2">
+                            {{ question.question_text }}
+                        </p>
+
+                        <div class="question-meta">
+                            <span class="badge-soft">{{ question.marks }} marks</span>
+                            <span class="badge-soft">{{ question.topic.name }}</span>
+                            <span class="badge-soft">{{ question.get_bloom_level_display }}</span>
+                            <span class="badge-soft">{{ question.get_difficulty_display }}</span>
+
+                            {% if question.is_ai_generated %}
+                                <span class="badge bg-success">AI</span>
+                            {% endif %}
+                        </div>
+
+                        {% if question.expected_answer %}
+                            <hr>
+                            <p class="small text-muted mb-0">
+                                <strong>Expected Answer:</strong>
+                                {{ question.expected_answer|truncatechars:160 }}
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="card">
+        <div class="empty-state">
+            <h5>No questions yet</h5>
+            <p>Add questions manually or generate them with AI.</p>
+            <a href="{% url 'add_question' %}" class="btn btn-primary">Add Question</a>
+            <a href="{% url 'ai_generate_questions' %}" class="btn btn-success">Generate with AI</a>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

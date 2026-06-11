@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="page-title mb-0">Generated Papers</h1>
+    <a href="{% url 'generate_paper' %}" class="btn btn-primary">Generate New Paper</a>
+</div>
+
+{% if papers %}
+    <div class="card">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Title</th>
+                        <th>Subject</th>
+                        <th>Marks</th>
+                        <th>Duration</th>
+                        <th>Created</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for paper in papers %}
+                        <tr>
+                            <td class="fw-semibold">{{ paper.title }}</td>
+                            <td>{{ paper.subject.name }}</td>
+                            <td>{{ paper.total_marks }}</td>
+                            <td>{{ paper.duration_minutes }} min</td>
+                            <td>{{ paper.created_at|date:"d M Y, h:i A" }}</td>
+                            <td class="text-end">
+                                <a href="{% url 'paper_preview' paper.id %}" class="action-link">Preview</a>
+                                |
+                                <a href="{% url 'download_paper_pdf' paper.id %}" class="action-link">Question PDF</a>
+                                |
+                                <a href="{% url 'download_answer_key_pdf' paper.id %}" class="action-link">Answer Key</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% else %}
+    <div class="card">
+        <div class="empty-state">
+            <h5>No papers generated yet</h5>
+            <p>Generate your first question paper using topics and Bloom distribution.</p>
+            <a href="{% url 'generate_paper' %}" class="btn btn-primary">Generate Paper</a>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}
