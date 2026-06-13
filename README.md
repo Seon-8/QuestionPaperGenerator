@@ -1,6 +1,6 @@
 # BloomForge
 
-An AI-assisted Django web application that helps teachers generate question papers based on subjects, topics, Bloom's taxonomy distribution, total marks, and number of questions.
+Question Paper Generator using Bloom's Taxonomy assisted by AI.
 
 ## Live Demo
 
