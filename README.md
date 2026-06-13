@@ -68,6 +68,18 @@ Since the question count is already full but marks are short, the system removes
 ### Dashboard
 ![Dashboard](screenshots/dashboard.png)
 
+### Subjects List
+![Subjects List](screenshots/subjects-list.png)
+
+### Question Bank
+![Question Bank](screenshots/question-bank.png)
+
+### Papers List
+![Papers List](screenshots/papers-list.png)
+
+### AI Question Generation
+![AI Question Generation](screenshots/ai-question.png)
+
 ### Paper Generation
 ![Paper Generation](screenshots/generate-paper.png)
 
