@@ -63,6 +63,17 @@ Generated from question bank:
 
 Since the question count is already full but marks are short, the system removes one selected question, recalculates the missing marks and question count, asks Gemini to generate a replacement question, and then validates the final paper.
 
+## Screenshots
+
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### Paper Generation
+![Paper Generation](screenshots/generate-paper.png)
+
+### Paper Preview
+![Paper Preview](screenshots/paper-preview.png)
+
 ## Limitations
 
 - The paper generation algorithm is greedy, not fully optimized.
