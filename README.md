@@ -88,6 +88,14 @@ Since the question count is already full but marks are short, the system removes
 #### Paper Preview
 ![Paper Preview](screenshots/paper-preview.png)
 
+#### Generated Paper
+![Paper](screenshots/test-9.png)
+
+#### Answer Key
+![Answer Key](screenshots/test-9-akey.png)
+
+View full sample pdfs here: [Sample folder](samples/)
+
 ## Limitations
 
 - The paper generation algorithm is greedy, not fully optimized.
