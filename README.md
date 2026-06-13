@@ -94,8 +94,8 @@ Since the question count is already full but marks are short, the system removes
 #### Answer Key
 ![Answer Key](screenshots/test-9-akey.png)
 
-#### View full sample pdfs here: [Samples](samples/)
-#### View all screenshots here: [Screensots](screenshots/)
+#### [View full sample pdfs](samples/)
+#### [View all screenshots](screenshots/)
 
 ## Limitations
 
