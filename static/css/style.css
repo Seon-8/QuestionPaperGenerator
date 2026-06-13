@@ -87,3 +87,19 @@ body {
     padding: 24px;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
 }
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+}
+
+input[type="checkbox"] {
+    margin-right: 6px;
+}
