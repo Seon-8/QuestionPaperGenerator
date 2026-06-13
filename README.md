@@ -77,10 +77,10 @@ Since the question count is already full but marks are short, the system removes
 ### Papers List
 ![Papers List](screenshots/papers-list.png)
 
-### Sample Paper Generation
-
-#### AI Question Generation
+### AI Question Generation
 ![AI Question Generation](screenshots/ai-question.png)
+
+### Sample Paper Generation
 
 #### Paper Generation
 ![Paper Generation](screenshots/generate-paper.png)
