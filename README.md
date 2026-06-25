@@ -4,8 +4,7 @@ Question Paper Generator using Bloom's Taxonomy assisted by AI.
 
 ## Live Demo
 
-Deployed on Render:  
-https://questionpapergenerator-8135.onrender.com
+[Deployed on Render](https://questionpapergenerator-8135.onrender.com)
 
 Demo usage:
 - Register a new account
