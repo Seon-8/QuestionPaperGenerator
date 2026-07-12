@@ -88,10 +88,10 @@ Since the question count is already full but marks are short, the system removes
 ![Paper Preview](screenshots/paper-preview.png)
 
 #### Generated Paper
-![Paper](screenshots/test-9.png)
+![Paper](screenshots/test-9-akey.png)
 
 #### Answer Key
-![Answer Key](screenshots/test-9-akey.png)
+![Answer Key](screenshots/test-9.png)
 
 #### [View full sample pdfs](samples/)
 #### [View all screenshots](screenshots/)
