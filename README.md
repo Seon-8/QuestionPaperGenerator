@@ -33,7 +33,7 @@ Demo usage:
 
 - Python
 - Django
-- SQLite
+- PostgreSQL
 - HTML, CSS, Bootstrap
 - JavaScript / AJAX
 - Gemini API
