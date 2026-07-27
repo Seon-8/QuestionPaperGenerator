@@ -69,7 +69,6 @@ class GeneratePaperForm(forms.Form):
     )
     duration_minutes = forms.IntegerField(min_value=1, initial=120)
 
-    # Bloom percentage fields
     remember_percent = forms.IntegerField(min_value=0, max_value=100, initial=10)
     understand_percent = forms.IntegerField(min_value=0, max_value=100, initial=30)
     apply_percent = forms.IntegerField(min_value=0, max_value=100, initial=20)
